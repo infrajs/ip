@@ -1,0 +1,19 @@
+{
+	"name": "infrajs/ip",
+	"homepage":"https://github.com/infrajs/ip",
+	"description": "Страна и регион по IP",
+	"require": {
+		"infrajs/cache": "~1",
+		"infrajs/load":"~1",
+		
+		"infrajs/path":"~1",
+		"infrajs/nostore":"~1",
+		"infrajs/cache":"~1",
+		"infrajs/ans":"~1",
+		"infrajs/router":"~1",
+		"infrajs/config":"~1"
+	},
+	"autoload": {
+		"psr-4": { "infrajs\\ip\\": "/" }
+	}
+}
