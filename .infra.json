@@ -1,4 +1,9 @@
 {
 	"conf":"\\infrajs\\ip\\IP",
-	"tester":"tester.php"
+	"tester":"tester.php",
+	"dependencies":"lang",
+	"lang":{
+		"list":["ru","en"],
+		"def":"ru"
+	}
 }
