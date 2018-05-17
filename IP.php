@@ -23,7 +23,7 @@ class IP {
 			//$ip = '62.106.100.30';
 			$src = 'http://api.ipstack.com/'.$ip.'?access_key='.$conf['key'].'&output=json&language=en';
 			//$src = 'http://freegeoip.net/json/'.$ip;
-			$data = file_get_contents($src);
+			$data = @file_get_contents($src);
 			$data = json_decode($data, true); 
 			if (empty($data)) return $data;
 			$data['time'] = time();
@@ -32,7 +32,9 @@ class IP {
 
 		foreach (array('country_name','region_name','city','country_name') as $k) {
 			if (!empty($data[$k])) $data[$k] = Lang::lang($lang, 'ip', $data[$k]);
+			else $data[$k] = '';
 		}
+		$data['city'] = '';
 		
 		$data['lang'] = $lang;
 		return $data;
