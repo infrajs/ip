@@ -20,11 +20,15 @@ class IP {
 		//exit;
 		$data = MemCache::exec('Регионы ip адресов', function ($ip) {
 			$conf = Config::get('ip');
-			//$ip = '62.106.100.30';
-			$src = 'http://api.ipstack.com/'.$ip.'?access_key='.$conf['key'].'&output=json&language=en';
-			//$src = 'http://freegeoip.net/json/'.$ip;
-			$data = @file_get_contents($src);
-			$data = json_decode($data, true); 
+			if (!empty($conf['key'])) {
+				//$ip = '62.106.100.30';
+				$src = 'http://api.ipstack.com/'.$ip.'?access_key='.$conf['key'].'&output=json&language=en';
+				//$src = 'http://freegeoip.net/json/'.$ip;
+				$data = @file_get_contents($src);
+				$data = json_decode($data, true); 
+			} else {
+				$data = array();
+			}
 			if (empty($data)) return $data;
 			$data['time'] = time();
 			return $data;
