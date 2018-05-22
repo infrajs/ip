@@ -38,7 +38,6 @@ class IP {
 			if (!empty($data[$k])) $data[$k] = Lang::lang($lang, 'ip', $data[$k]);
 			else $data[$k] = '';
 		}
-		$data['city'] = '';
 		
 		$data['lang'] = $lang;
 		return $data;
