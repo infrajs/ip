@@ -18,27 +18,29 @@ class IP {
 		//echo '<pre>';
 		//debug_print_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
 		//exit;
-		$data = MemCache::exec('Регионы ip адресов', function ($ip) {
-			$conf = Config::get('ip');
-			if (!empty($conf['key'])) {
+		$conf = Config::get('ip');
+		$data = MemCache::exec('Регионы ip адресов', function ($ip, $key) {
+			if (!empty($key)) {
 				//$ip = '62.106.100.30';
-				$src = 'http://api.ipstack.com/'.$ip.'?access_key='.$conf['key'].'&output=json&language=en';
+				$src = 'http://api.ipstack.com/'.$ip.'?access_key='.$key.'&output=json&language=en';
 				//$src = 'http://freegeoip.net/json/'.$ip;
-				$data = @file_get_contents($src);
+
+				$data = file_get_contents($src);
 				$data = json_decode($data, true); 
 			} else {
+				error_log('infrajs/ip: Требуется ключ ipstack.com');
 				$data = array();
 			}
 			if (empty($data)) return $data;
 			$data['time'] = time();
 			return $data;
-		}, array($ip), ['akiyatkin\boo\Cache','getDurationTime'], ['last month']);
+		}, array($ip,$conf['key']), ['akiyatkin\boo\Cache','getDurationTime'], ['last month']);
 
 		foreach (array('country_name','region_name','city','country_name') as $k) {
 			if (!empty($data[$k])) $data[$k] = Lang::lang($lang, 'ip', $data[$k]);
 			else $data[$k] = '';
 		}
-		
+
 		$data['lang'] = $lang;
 		return $data;
 	}

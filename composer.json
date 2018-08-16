@@ -6,7 +6,9 @@
 		"infrajs/cache": "~1",
 		"infrajs/load":"~1",
 		"infrajs/ans":"~1",
-		"infrajs/lang":"~1"
+		"infrajs/lang":"~1",
+		"infrajs/rest":"~1",
+		"infrajs/access":"~1"
 	},
 	"autoload": {
 		"psr-4": { "infrajs\\ip\\": "/" }
