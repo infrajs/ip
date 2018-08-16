@@ -2,10 +2,5 @@
 	"conf":"\\infrajs\\ip\\IP",
 	"tester":"tester.php",
 	"dependencies":"lang",
-	"/key":"Требуется ключ ipstack.com",
-	"key":"",
-	"lang":{
-		"list":["ru","en"],
-		"def":"ru"
-	}
+	"key":""
 }

@@ -18,6 +18,7 @@ class IP {
 		//echo '<pre>';
 		//debug_print_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
 		//exit;
+
 		$conf = Config::get('ip');
 		$data = MemCache::exec('Регионы ip адресов', function ($ip, $key) {
 			if (!empty($key)) {

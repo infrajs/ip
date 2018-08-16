@@ -3,6 +3,7 @@ use infrajs\ip\IP;
 use infrajs\ans\Ans;
 
 $ans = array();
+
 $data = IP::get(true);
 if (!$data) return Ans::err($ans, 'Нет данных по IP сервера');
 
